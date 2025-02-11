@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Be my val</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body class="body">
+    <p onclick="changeText()" class="change" id="change">Change to Pidgin</p>
+    <div class="hero">
+      <dotlottie-player
+        src="https://lottie.host/a1b7570a-2c20-4964-8678-74819871c073/8cPwvfzy5b.lottie"
+        background="transparent"
+        speed="1"
+        style="width: 300px; height: 300px"
+        loop
+        autoplay
+      ></dotlottie-player>
+      <p class="will" id="will">Will you be my valentine ?</p>
+      <div class="answer">
+        <p class="positive">Yes</p>
+        <p class="negative">No</p>
+      </div>
+    </div>
+    <p class="copyright">
+      By
+      <a class="portfolio" href="https://my-portfolio02-eight.vercel.app/"
+        >Mayomiwa</a
+      >
+      | <span id="year"></span>. All rights reserved
+    </p>
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1"></script>
+  </body>
+</html>

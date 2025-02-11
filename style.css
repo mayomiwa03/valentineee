@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 83%;
+}
+.body {
+  margin: 0 auto;
+  font-family: "Merienda", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  max-width: 414px;
+  background-color: #f3d9fa;
+  position: relative;
+  padding: 0 3rem;
+  overflow: hidden;
+}
+.change {
+  color: #fff;
+  background-color: #862e9c;
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  cursor: pointer;
+
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+.hero {
+  height: 100vh;
+  padding-top: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+.will {
+  font-size: 2rem;
+  transition: opacity 0.5s ease-in-out;
+  text-align: center;
+}
+.fade {
+  opacity: 0;
+}
+
+.answer {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  font-size: 1.6rem;
+}
+.positive,
+.negative {
+  padding: 0.5rem 1rem;
+  border: 1px solid #862e9c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.answer {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.portfolio {
+  color: #333;
+}
