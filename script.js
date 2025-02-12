@@ -24,49 +24,72 @@ document.getElementById("change").addEventListener("click", function () {
 function handleChoice(isPositive) {
   let textElement = document.querySelector(".will");
   let answerContainer = document.querySelector(".answer");
+  let tryAgainBtn = document.getElementById("try-again");
 
   textElement.classList.add("fade-out");
-  answerContainer.classList.add("fade-out"); // Hide options
+  answerContainer.classList.add("fade-out");
 
   setTimeout(() => {
-    if (isPositive) {
-      textElement.textContent = isPidgin
+    let responseText = isPositive
+      ? isPidgin
         ? "Awwwn 🥰! You don burst my brain!"
-        : "Aww! 🥰 You made my day!";
-      document
-        .querySelector("dotlottie-player")
-        .setAttribute(
-          "src",
-          "https://lottie.host/9c21e4b3-8e28-4f45-8452-2b82f6b5ad01/Q5TGM8eLrC.lottie"
-        );
+        : "Aww! 🥰 You made my day!"
+      : isPidgin
+      ? "Chai! 💔 You don break my heart o!"
+      : "Oh no! 💔 You broke my heart!";
 
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
-    } else {
-      textElement.textContent = isPidgin
-        ? "Chai! 💔 You don break my heart o!"
-        : "Oh no! 💔 You broke my heart!";
-      document
-        .querySelector("dotlottie-player")
-        .setAttribute(
-          "src",
-          "https://lottie.host/726e1a4b-9e7d-4b6f-9b49-b2b71f24437d/6DXfB3Y2bM.lottie"
-        );
-    }
+    textElement.textContent = responseText;
+
+    // Save response to local storage
+    let responses =
+      JSON.parse(localStorage.getItem("valentineResponses")) || [];
+    responses.push(responseText);
+    localStorage.setItem("valentineResponses", JSON.stringify(responses));
 
     textElement.classList.remove("fade-out");
     textElement.classList.add("fade-in");
 
-    // Hide the answer options completely
     setTimeout(() => {
-      answerContainer.style.display = "none";
+      answerContainer.style.opacity = "0";
+      setTimeout(() => {
+        answerContainer.style.display = "none";
+      }, 300);
+      tryAgainBtn.style.display = "block"; // Show "Try Again" button
+
+      // 🎉 Trigger confetti if the user said YES 🎉
+      if (isPositive) {
+        startConfetti();
+      }
     }, 500);
   }, 500);
 }
 
+// Reset everything when "Try Again" is clicked
+document.getElementById("try-again").addEventListener("click", function () {
+  let textElement = document.querySelector(".will");
+  let answerContainer = document.querySelector(".answer");
+
+  textElement.classList.add("fade-out");
+
+  setTimeout(() => {
+    textElement.textContent = isPidgin
+      ? "Wetin dey sup shawty, You no go like be my val ? 😏❤️"
+      : "Will you be my valentine ?";
+
+    answerContainer.style.display = "flex"; // Show choices again
+    setTimeout(() => {
+      answerContainer.style.opacity = "1";
+    }, 100);
+
+    this.style.display = "none"; // Hide "Try Again" button
+    textElement.classList.remove("fade-out");
+    textElement.classList.add("fade-in");
+
+    stopConfetti(); // Stop confetti on reset
+  }, 500);
+});
+
+// Event listeners for choices
 document.querySelector(".positive").addEventListener("click", function () {
   handleChoice(true);
 });
@@ -74,6 +97,36 @@ document.querySelector(".positive").addEventListener("click", function () {
 document.querySelector(".negative").addEventListener("click", function () {
   handleChoice(false);
 });
+
+// Display stored responses on page load
+document.addEventListener("DOMContentLoaded", function () {
+  console.log(
+    "Previous Responses:",
+    JSON.parse(localStorage.getItem("valentineResponses"))
+  );
+});
+
+// 🎉 Confetti Effect 🎉
+function startConfetti() {
+  let canvas = document.createElement("canvas");
+  canvas.id = "confettiCanvas";
+  document.body.appendChild(canvas);
+
+  let confettiSettings = { target: "confettiCanvas", max: 100 };
+  let confetti = new ConfettiGenerator(confettiSettings);
+  confetti.render();
+
+  setTimeout(() => {
+    stopConfetti();
+  }, 5000); // Stop confetti after 5 seconds
+}
+
+function stopConfetti() {
+  let canvas = document.getElementById("confettiCanvas");
+  if (canvas) {
+    canvas.remove();
+  }
+}
 
 // year
 document.getElementById("year").textContent = new Date().getFullYear();

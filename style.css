@@ -18,7 +18,8 @@ html {
   padding: 0 3rem;
   /* overflow: hidden; */
 }
-.change {
+.change,
+.try-again {
   color: #fff;
   background-color: #862e9c;
   font-size: 1rem;
@@ -30,7 +31,12 @@ html {
 
   position: absolute;
   top: 1rem;
+}
+.change {
   left: 1rem;
+}
+.try-again {
+  right: 1rem;
 }
 .hero {
   height: 100vh;
